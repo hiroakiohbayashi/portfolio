@@ -170,3 +170,16 @@ a:hover {
   opacity: 1; /* 初期状態では完全に不透明 */
   transition: opacity 0.5s ease-in-out; /* 不透明度の変化を滑らかに */
 }
+
+/* 初期状態でセクションを非表示または透明に */
+.section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* フェードインした状態 */
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

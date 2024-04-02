@@ -35,3 +35,26 @@ setTimeout(() => {
     this.style.display = "none";
   }, 500); // この時間はフェードアウトのtransitionと合わせる
 }, 0);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        } else {
+          entry.target.classList.remove("visible");
+        }
+      });
+    },
+    {
+      rootMargin: "0px",
+      threshold: 0.1,
+    }
+  );
+
+  // 監視対象のセクションを指定
+  document.querySelectorAll(".section").forEach((section) => {
+    observer.observe(section);
+  });
+});
