@@ -25,15 +25,6 @@ $(function () {
     window.scrollTo({ top: 0, behavior: "smooth" }); // スムースにトップに戻る
   });
 
-  // スクロール開始後にフェードアウト
-  setTimeout(() => {
-    this.style.opacity = "0";
-    // フェードアウト後にボタンを非表示にする
-    setTimeout(() => {
-      this.style.display = "none";
-    }, 500); // この時間はフェードアウトのtransitionと合わせる
-  }, 0);
-
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -88,10 +79,5 @@ $(function () {
   // クローズボタンまたはモーダルの外側をクリック時にモーダルを閉じる
   $(".close-btn, .modal").click(function () {
     $(".modal").css("display", "none");
-  });
-
-  // モーダルコンテンツ自体のクリック時には閉じないようにする
-  $(".modal").click(function (event) {
-    event.stopPropagation();
   });
 });
