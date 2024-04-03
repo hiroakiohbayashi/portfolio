@@ -53,8 +53,49 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
+  // ページ内リンクのスクロールをなめらかにする（スムーズスクロール）
+  $('a[href^="#"]').click(function () {
+    const speed = 500;
+    const href = $(this).attr("href");
+    let $target;
+    if (href == "#") {
+      $target = $("html");
+    } else {
+      $target = $(href);
+    }
+    const position = $target.offset().top;
+    $("html, body").animate({ scrollTop: position }, speed, "swing");
+    return false;
+  });
+
   // 監視対象のセクションを指定
   document.querySelectorAll(".section").forEach((section) => {
     observer.observe(section);
+  });
+});
+
+$(document).ready(function () {
+  // 画像クリック時の処理
+  $("myImg").click(function () {
+    var src = $(this).attr("src");
+    $(".modal").attr("src", src);
+    $(".modal").css("display", "block");
+  });
+
+  // Worksの画像をクリックしたときにモーダルで拡大表示する
+  $(".works img").click(function () {
+    const imgSrc = $(this).attr("src");
+    $(".big-img").attr("src", imgSrc);
+    $(".modal").fadeIn();
+    return false;
+  });
+  // クローズボタンまたはモーダルの外側をクリック時にモーダルを閉じる
+  $(".close-btn, .modal").click(function () {
+    $(".modal").css("display", "none");
+  });
+
+  // モーダルコンテンツ自体のクリック時には閉じないようにする
+  $(".modal").click(function (event) {
+    event.stopPropagation();
   });
 });
