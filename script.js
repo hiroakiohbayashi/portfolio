@@ -6,37 +6,34 @@ $(function () {
     autoplaySpeed: 5000,
     arrows: false,
   });
-});
+  // ボタンの要素を取得
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
 
-// ボタンの要素を取得
-const scrollTopBtn = document.getElementById("scrollTopBtn");
+  // スクロールイベントを監視
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 500) {
+      // 500px以上スクロールしたらボタンを表示
+      scrollTopBtn.style.display = "block";
+    } else {
+      // それ以外の場合は非表示
+      scrollTopBtn.style.display = "none";
+    }
+  });
 
-// スクロールイベントを監視
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 500) {
-    // 500px以上スクロールしたらボタンを表示
-    scrollTopBtn.style.display = "block";
-  } else {
-    // それ以外の場合は非表示
-    scrollTopBtn.style.display = "none";
-  }
-});
+  // ボタンのクリックイベント
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" }); // スムースにトップに戻る
+  });
 
-// ボタンのクリックイベント
-scrollTopBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" }); // スムースにトップに戻る
-});
-
-// スクロール開始後にフェードアウト
-setTimeout(() => {
-  this.style.opacity = "0";
-  // フェードアウト後にボタンを非表示にする
+  // スクロール開始後にフェードアウト
   setTimeout(() => {
-    this.style.display = "none";
-  }, 500); // この時間はフェードアウトのtransitionと合わせる
-}, 0);
-console.log(test);
-document.addEventListener("DOMContentLoaded", () => {
+    this.style.opacity = "0";
+    // フェードアウト後にボタンを非表示にする
+    setTimeout(() => {
+      this.style.display = "none";
+    }, 500); // この時間はフェードアウトのtransitionと合わせる
+  }, 0);
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -52,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
       threshold: 0.1,
     }
   );
-  console.log(test);
   // ページ内リンクのスクロールをなめらかにする（スムーズスクロール）
   //WORKにはスクロールしない質問する
   $('a[href^="#"]').click(function () {
@@ -64,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       $target = $(href);
     }
-    console.log(target);
+    console.log($target);
     const position = $target.offset().top;
     $("html, body").animate({ scrollTop: position }, speed, "swing");
     return false;
@@ -74,9 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".section").forEach((section) => {
     observer.observe(section);
   });
-});
 
-$(document).ready(function () {
   // 画像クリック時の処理
   $("myImg").click(function () {
     var src = $(this).attr("src");
