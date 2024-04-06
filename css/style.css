@@ -170,6 +170,18 @@ a:hover {
   opacity: 1; /* 初期状態では完全に不透明 */
   transition: opacity 0.5s ease-in-out; /* 不透明度の変化を滑らかに */
 }
+.arrow {
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid #be2b2b;
+  border-right: 3px solid #be2b2b;
+  transform: rotate(-45deg);
+  margin-top: 5px;
+  display: inline-block;
+  position: absolute;
+  top: -25px;
+  left: 45px;
+}
 
 /* 初期状態でセクションを非表示または透明に */
 .section {
